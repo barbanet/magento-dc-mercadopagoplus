@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Dc_MercadoPagoPlus
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   Dc
+ * @package    Dc_MercadoPagoPlus
+ * @copyright  Copyright (c) 2014-2015 Damián Culotta. (http://www.damianculotta.com.ar/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Dc_MercadoPagoPlus>
+            <version>1.0.0</version>
+        </Dc_MercadoPagoPlus>
+    </modules>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Dc_MercadoPagoPlus>
+                    <files>
+                        <default>Dc_MercadoPagoPlus.csv</default>
+                    </files>
+                </Dc_MercadoPagoPlus>
+            </modules>
+        </translate>
+    </adminhtml>
+    <global>
+        <models>
+            <mercadopagoplus>
+                <class>Dc_MercadoPagoPlus_Model</class>
+            </mercadopagoplus>
+        </models>
+        <resources>
+            <mercadopagoplus_setup>
+                <setup>
+                    <module>Dc_MercadoPagoPlus</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mercadopagoplus_setup>
+            <mercadopagoplus_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mercadopagoplus_write>
+            <mercadopagoplus_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mercadopagoplus_read>
+        </resources>
+        <helpers>
+            <mercadopagoplus>
+                <class>Dc_MercadoPagoPlus_Helper</class>
+            </mercadopagoplus>
+        </helpers>
+        <template>
+            <email>
+                <mercadopagoplus_account_balance_template translate="label" module="mercadopagoplus">
+                    <label>MercadoPago Plus - Account Balance</label>
+                    <file>dc/mercadopagoplus/account/balance.html</file>
+                    <type>html</type>
+                </mercadopagoplus_account_balance_template>
+                <mercadopagoplus_order_status_template translate="label" module="mercadopagoplus">
+                    <label>MercadoPago Plus - Order Status</label>
+                    <file>dc/mercadopagoplus/order/status.html</file>
+                    <type>html</type>
+                </mercadopagoplus_order_status_template>
+            </email>
+        </template>
+    </global>
+    <crontab>
+        <jobs>
+            <mercadopagoplus_account_balance>
+                <run>
+                    <model>mercadopagoplus/cron_mercadopago_account_balance::run</model>
+                </run>
+            </mercadopagoplus_account_balance>
+            <mercadopagoplus_order_status>
+                <run>
+                    <model>mercadopagoplus/cron_mercadopago_order_status::run</model>
+                </run>
+            </mercadopagoplus_order_status>
+        </jobs>
+    </crontab>
+</config>

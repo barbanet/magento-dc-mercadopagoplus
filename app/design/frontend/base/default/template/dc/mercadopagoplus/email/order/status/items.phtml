@@ -1,0 +1,55 @@
+<?php
+/**
+ * Dc_MercadoPagoPlus
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   Dc
+ * @package    Dc_MercadoPagoPlus
+ * @copyright  Copyright (c) 2014-2015 Damián Culotta. (http://www.damianculotta.com.ar/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php $_orders = $this->getOrders() ?>
+<?php if ($_orders): ?>
+    <table cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #EAEAEA;">
+        <thead>
+            <tr>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Order') ?></th>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Magento') ?></th>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('MercadoPago') ?></th>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Updated At') ?></th>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Name') ?></th>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Total') ?></th>
+            </tr>
+        </thead>
+        <?php $i=0; ?>
+        <?php foreach ($_orders as $_order): ?>
+
+            <tbody<?php echo $i%2 ? ' bgcolor="#F6F6F6"' : '' ?>>
+                <td align="left" style="font-size:11px; padding:10px;"><?php echo $_order['increment_id']; ?></td>
+                <td align="left" style="font-size:11px; padding:10px; border-left:1px dotted #CCCCCC;"><?php echo $_order['magento_status']; ?></td>
+                <td align="left"<?php if (!$_order['mercadopago_status']): ?> bgcolor="#FFBABA"<?php endif; ?> style="font-size:11px; padding:10px; border-left:1px dotted #CCCCCC;"><?php echo $_order['mercadopago_status']; ?> <?php echo $_order['mercadopago_status_detail']; ?></td>
+                <td align="right"<?php if (!$_order['mercadopago_status']): ?> bgcolor="#FFBABA"<?php endif; ?> style="font-size:11px; padding:10px; border-left:1px dotted #CCCCCC;"><?php echo $_order['mercadopago_updated_at']; ?></td>
+                <td align="left" style="font-size:11px; padding:10px; border-left:1px dotted #CCCCCC;"><?php echo $_order['lastname']; ?>, <?php echo $_order['firstname']; ?></td>
+                <td align="right" style="font-size:11px; padding:10px; border-left:1px dotted #CCCCCC;"><?php echo $_order['total']; ?></td>
+            </tbody>
+            <?php $i++; ?>
+        <?php endforeach; ?>
+        <tfoot>
+            <tr>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Order') ?></th>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Magento') ?></th>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('MercadoPago') ?></th>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Updated At') ?></th>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Name') ?></th>
+                <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Total') ?></th>
+            </tr>
+        </tfoot>
+    </table>
+<?php endif; ?>
+

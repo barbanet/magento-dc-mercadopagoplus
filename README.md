@@ -1,1 +1,17 @@
-# magento-dc-mercadopagoplus
+Dc_MercadoPagoPlus
+==================
+The module adds extra functionalities to be used with the official module of [MercadoPago](https://github.com/mercadopago/cart-magento).
+
+Current features
+----------------
+- Cronjob to receive an email with the Account Balance.
+- Cronjob to receive an email with the situation of Orders in a given status according the gateway (for example the reason of rejected transactions).
+
+Compatibility
+-------------
+- Magento CE: 1.7, 1.8, 1.9
+- Magento EE: 1.13, 1.14
+
+Requeriments
+------------
+Currently the module is only compatible with Mercadopago_Express (Mpexpress).

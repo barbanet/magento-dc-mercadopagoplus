@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Dc_MercadoPagoPlus
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   Dc
+ * @package    Dc_MercadoPagoPlus
+ * @copyright  Copyright (c) 2014-2015 Damián Culotta. (http://www.damianculotta.com.ar/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <sections>
+        <mercadopagoplus translate="label" module="mercadopagoplus">
+            <label>MercadoPago Plus</label>
+            <tab>dc</tab>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <sort_order>100023</sort_order>
+            <groups>
+                <account_balance translate="label">
+                    <label>Account Balance</label>
+                    <sort_order>105</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable translate="label comment">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Select if the process can be executed.]]></comment>
+                        </enable>
+                        <save_log translate="label comment">
+                            <label>Save Log</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </save_log>
+                        <identity translate="label comment">
+                            <label>Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Select email sender.]]></comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </identity>
+                        <recipient translate="label comment">
+                            <label>Recipient</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Select email recipient. You can set multiple addresses separated by , (comma).]]></comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </recipient>
+                        <template translate="label">
+                            <label>Email template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </template>
+                        <cron_syntax translate="label comment">
+                            <label>Cron Syntax</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>mercadopagoplus/system_config_cron_account_balance</backend_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Like a cron expression: 0 0 * * *]]></comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </cron_syntax>
+                    </fields>
+                </account_balance>
+                <order_status translate="label">
+                    <label>Order Status</label>
+                    <sort_order>110</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable translate="label comment">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Select if the process can be executed.]]></comment>
+                        </enable>
+                        <save_log translate="label comment">
+                            <label>Save Log</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </save_log>
+                        <identity translate="label comment">
+                            <label>Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Select email sender.]]></comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </identity>
+                        <recipient translate="label comment">
+                            <label>Recipient</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Select email recipient. You can set multiple addresses separated by , (comma).]]></comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </recipient>
+                        <template translate="label">
+                            <label>Email template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </template>
+                        <cron_syntax translate="label comment">
+                            <label>Cron Syntax</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>mercadopagoplus/system_config_cron_order_status</backend_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Like a cron expression: 0 0 * * *]]></comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </cron_syntax>
+                        <order_status translate="label comment">
+                            <label>Order Status</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>mercadopagoplus/system_config_source_order_status</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </order_status>
+                    </fields>
+                </order_status>
+            </groups>
+        </mercadopagoplus>
+    </sections>
+</config>
