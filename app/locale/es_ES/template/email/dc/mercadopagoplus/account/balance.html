@@ -1,0 +1,58 @@
+<!--@subject {{var store_name}} | MercadoPago Plus - Estado de Cuenta@-->
+<!--@vars
+{"skin url=\"images/logo_email.gif\" _area='frontend'":"Imagen del logotipo de E-mail"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+            <td align="center" valign="top" style="padding:20px 0 20px 0">
+                <!-- [ header starts here] -->
+                <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+                    <tr>
+                        <td valign="top">
+                            <img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store_name}}" style="margin-bottom:10px;" border="0"/>
+                        </td>
+                    </tr>
+                <!-- [ middle starts here] -->
+                    <tr>
+                        <td valign="top">
+                            <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Mercado Pago</h1>
+                            <p style="font-size:12px; line-height:16px; margin:0;">Estado de Cuenta actual.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <p style="border:1px solid #E0E0E0; font-size:12px; line-height:16px; margin:0; padding:13px 18px; background:#f9f9f9;">
+                                <strong>Total</strong>: {{var data.total_amount}} {{var data.currency}}<br/>
+                                <strong>Disponible</strong>: {{var data.available_balance}} {{var data.currency}}<br/>
+                                <strong>No disponible</strong>: {{var data.unavailable_balance}} {{var data.currency}}<br/>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <p style="font-size:12px; line-height:16px; margin:0;">Motivos de los No Disponibles</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <p style="border:1px solid #E0E0E0; font-size:12px; line-height:16px; margin:0; padding:13px 18px; background:#f9f9f9;">
+                                <strong>Mediación</strong>: {{var data.unavailable_by_dispute}} {{var data.currency}}<br/>
+                                <strong>Fraude</strong>: {{var data.unavailable_by_fraud}} {{var data.currency}}<br/>
+                                <strong>Deuda en MercadoLibre</strong>: {{var data.unavailable_by_ml_debt}} {{var data.currency}}<br/>
+                                <strong>Aun no disponile</strong>: {{var data.unavailable_by_time_period}} {{var data.currency}}<br/>
+                                <strong>Restricción</strong>: {{var data.unavailable_by_restriction}} {{var data.currency}}<br/>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
