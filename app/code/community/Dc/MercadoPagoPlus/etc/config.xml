@@ -33,6 +33,11 @@
         </translate>
     </adminhtml>
     <global>
+        <blocks>
+            <mercadopagoplus>
+                <class>Dc_MercadoPagoPlus_Block</class>
+            </mercadopagoplus>
+        </blocks>
         <models>
             <mercadopagoplus>
                 <class>Dc_MercadoPagoPlus_Model</class>
@@ -92,4 +97,11 @@
             </mercadopagoplus_order_status>
         </jobs>
     </crontab>
+    <default>
+        <payment>
+            <mercadopagoplus_button>
+                <model>mercadopagoplus/payment_button</model>
+            </mercadopagoplus_button>
+        </payment>
+    </default>
 </config>
