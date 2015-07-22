@@ -18,29 +18,6 @@ class Dc_MercadoPagoPlus_Model_Service_Mercadopago extends Dc_MercadoPagoPlus_Mo
 {
 
     /**
-     * @var string
-     */
-    protected $api_url = 'https://api.mercadolibre.com';
-
-    /**
-     * @var
-     */
-    protected $client;
-
-    /**
-     * Get REST client instance.
-     *
-     * @return Zend_Rest_Client
-     */
-    public function getClient()
-    {
-        if (!$this->client) {
-            $client =  new Zend_Rest_Client($this->api_url);
-        }
-        return $client;
-    }
-
-    /**
      * Authenticate against API and return access token.
      *
      * @return mixed

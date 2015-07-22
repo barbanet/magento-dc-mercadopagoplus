@@ -17,4 +17,27 @@
 abstract class Dc_MercadoPagoPlus_Model_Service_Abstract extends Varien_Object
 {
 
+    /**
+     * @var string
+     */
+    protected $api_url = 'https://api.mercadolibre.com';
+
+    /**
+     * @var
+     */
+    protected $client;
+
+    /**
+     * Get REST client instance.
+     *
+     * @return Zend_Rest_Client
+     */
+    public function getClient()
+    {
+        if (!$this->client) {
+            $client =  new Zend_Rest_Client($this->api_url);
+        }
+        return $client;
+    }
+
 }

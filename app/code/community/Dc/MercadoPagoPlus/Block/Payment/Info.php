@@ -40,4 +40,15 @@ class Dc_MercadoPagoPlus_Block_Payment_Info extends Mage_Payment_Block_Info
         }
         return $this->link;
     }
+
+    /**
+     * Get payment instructions.
+     *
+     * @return string
+     */
+    public function getInstructions()
+    {
+        return trim(Mage::getStoreConfig('payment/mercadopagoplus_button/instructions'));
+    }
+
 }

@@ -18,6 +18,11 @@
 <?php if ($this->getButtonLink()): ?>
 <table>
     <tbody>
+        <?php if ($this->getInstructions()): ?>
+        <tr>
+            <td><?php echo $this->getInstructions(); ?></td>
+        </tr>
+        <?php endif; ?>
         <tr>
             <td><?php echo $this->getButtonLink(); ?></td>
         </tr>
