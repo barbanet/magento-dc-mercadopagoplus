@@ -245,6 +245,15 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                         </order_status>
+                        <notification_url translate="label">
+                            <label>Notification Url</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Use the same value assigned into your MercadoPago account to recieve IPN notifications.]]></comment>
+                        </notification_url>
                     </fields>
                 </mercadopagoplus_button>
             </groups>
