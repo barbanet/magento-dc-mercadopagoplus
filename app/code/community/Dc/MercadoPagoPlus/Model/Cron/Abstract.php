@@ -68,6 +68,7 @@ abstract class Dc_MercadoPagoPlus_Model_Cron_Abstract implements Dc_MercadoPagoP
             $this->log(Mage::helper('mercadopagoplus')->__('Email sent.'));
             return true;
         } catch (Exception $e) {
+            //TODO: choose between system.log, exception.log or mercadopagosplus.log.
             Mage::log($e->getMessage());
             $this->log(Mage::helper('mercadopagoplus')->__('There was an error trying to send the email.'));
             return false;
