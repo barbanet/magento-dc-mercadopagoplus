@@ -20,7 +20,7 @@ abstract class Dc_MercadoPagoPlus_Model_Service_Abstract extends Varien_Object
     /**
      * @var string
      */
-    protected $api_url = 'https://api.mercadolibre.com';
+    protected $api_url = 'https://api.mercadopago.com';
 
     /**
      * @var
