@@ -60,16 +60,17 @@ class Dc_MercadoPagoPlus_Model_Payment_Button extends Mage_Payment_Model_Method_
                             'currency_id' => $currency_code,
                             'picture_url' => $this->getProductThumbnail($quote_item->getProduct()),
                             'quantity' => $quote_item->getQty(),
-                            'unit_price' => $quote_item->getPriceInclTax()
+                            'unit_price' => ($quote_item->getPriceInclTax() - $quote_item->getDiscountAmount())
                         );
         }
         $items[] = array(
-            'id' => 'shipment',
-            'title' => Mage::helper('mercadopagoplus')->__('Shipment'),
-            'currency_id' => $currency_code,
-            'quantity' => 1,
-            'unit_price' => $quote->getShippingAddress()->getShippingInclTax()
-        );
+                    'id' => 'shipment',
+                    'title' => Mage::helper('mercadopagoplus')->__('Shipment'),
+                    'currency_id' => $currency_code,
+                    'quantity' => 1,
+                    'unit_price' => ($quote->getShippingAddress()->getShippingInclTax() - $quote->getShippingAddress()->getShippingDiscountAmount())
+                );
+
 
         $preference_data = array(
             'items' => $items,
