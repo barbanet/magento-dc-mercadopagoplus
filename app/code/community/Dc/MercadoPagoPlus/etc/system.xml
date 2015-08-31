@@ -25,9 +25,50 @@
             <show_in_store>0</show_in_store>
             <sort_order>100023</sort_order>
             <groups>
+                <credentials translate="label">
+                    <label>Credentials</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <source translate="label comment">
+                            <label>Source</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mercadopagoplus/system_config_source_credentials_source</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[You can set your credentials here or use those assigned into the original module.]]></comment>
+                        </source>
+                        <client_id translate="label">
+                            <label>Client Id</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <source>1</source>
+                            </depends>
+                        </client_id>
+                        <client_secret translate="label">
+                            <label>Client Secret</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <source>1</source>
+                            </depends>
+                        </client_secret>
+                    </fields>
+                </credentials>
                 <account_balance translate="label">
                     <label>Account Balance</label>
-                    <sort_order>105</sort_order>
+                    <sort_order>15</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
@@ -108,7 +149,7 @@
                 </account_balance>
                 <order_status translate="label">
                     <label>Order Status</label>
-                    <sort_order>110</sort_order>
+                    <sort_order>20</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>

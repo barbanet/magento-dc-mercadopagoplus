@@ -18,6 +18,38 @@ class Dc_MercadoPagoPlus_Model_Service_Mercadopago extends Dc_MercadoPagoPlus_Mo
 {
 
     /**
+     * @var
+     */
+    private $client_id;
+
+    /**
+     * @var
+     */
+    private $client_secret;
+
+    /**
+     * Assign API credentials based on which module version is in use.
+     */
+    protected function assignCredentials()
+    {
+        $source = Mage::getStoreConfig('mercadopagoplus/credentials/source');
+        switch ($source) {
+            case Dc_MercadoPagoPlus_Model_System_Config_Source_Credentials_Source::CUSTOM:
+                $this->client_id = Mage::getStoreConfig('mercadopagoplus/credentials/client_id');
+                $this->client_secret = Mage::getStoreConfig('mercadopagoplus/credentials/client_secret');
+                break;
+            case Dc_MercadoPagoPlus_Model_System_Config_Source_Credentials_Source::MPEXPRESS:
+                $this->client_id = Mage::getStoreConfig('payment/mpexpress/client_id');
+                $this->client_secret = Mage::getStoreConfig('payment/mpexpress/client_secret');
+                break;
+            case Dc_MercadoPagoPlus_Model_System_Config_Source_Credentials_Source::MERCADOPAGO:
+                $this->client_id = Mage::getStoreConfig('payment/mercadopago/client_id');
+                $this->client_secret = Mage::getStoreConfig('payment/mercadopago/client_secret');
+                break;
+        }
+    }
+
+    /**
      * Authenticate against API and return access token.
      *
      * @return mixed
@@ -26,14 +58,12 @@ class Dc_MercadoPagoPlus_Model_Service_Mercadopago extends Dc_MercadoPagoPlus_Mo
     protected function authenticate()
     {
         try {
-            //TODO: Validate which version of MercadoPago is installed.
-            $api_client_id = Mage::getStoreConfig('payment/mpexpress/client_id');
-            $api_client_secret = Mage::getStoreConfig('payment/mpexpress/client_secret');
+            $this->assignCredentials();
             $endpoint = '/oauth/token';
             $data = array(
                 'grant_type' => 'client_credentials',
-                'client_id' => $api_client_id,
-                'client_secret' => $api_client_secret
+                'client_id' => $this->client_id,
+                'client_secret' => $this->client_secret
             );
             $response = $this->getClient()->restPost($endpoint, $data);
             $response_body = json_decode($response->getBody());
