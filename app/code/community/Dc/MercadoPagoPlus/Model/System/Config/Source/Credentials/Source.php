@@ -29,15 +29,15 @@ class Dc_MercadoPagoPlus_Model_System_Config_Source_Credentials_Source
         return array(
             array(
                 'value' => self::CUSTOM,
-                'label' => Mage::helper('slider')->__('Custom')
+                'label' => Mage::helper('mercadopagoplus')->__('Custom')
             ),
             array(
                 'value' => self::MPEXPRESS,
-                'label' => Mage::helper('slider')->__('MPExpress')
+                'label' => Mage::helper('mercadopagoplus')->__('MPExpress')
             ),
             array(
                 'value' => self::MERCADOPAGO,
-                'label' => Mage::helper('slider')->__('MercadoPago')
+                'label' => Mage::helper('mercadopagoplus')->__('MercadoPago')
             )
         );
     }
