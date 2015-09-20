@@ -12,7 +12,3 @@ Compatibility
 -------------
 - Magento CE: 1.7, 1.8, 1.9
 - Magento EE: 1.13, 1.14
-
-Requeriments
-------------
-Currently the module is only compatible with Mercadopago_Express (Mpexpress).
