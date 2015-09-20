@@ -20,17 +20,23 @@
  * Original code from https://github.com/mercadopago/sdk-php
  */
 
-class Dc_MercadoPagoPlus_MercadoPago {
+class Dc_MercadoPagoPlus_MercadoPago
+{
 
-    const version = "0.3.3";
+    const version = "0.3.4";
 
     private $client_id;
+
     private $client_secret;
+
     private $ll_access_token;
+
     private $access_data;
+
     private $sandbox = FALSE;
 
-    function __construct() {
+    public function __construct()
+    {
         $i = func_num_args();
 
         if ($i > 2 || $i < 1) {
@@ -47,7 +53,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
         }
     }
 
-    public function sandbox_mode($enable = NULL) {
+    public function sandbox_mode($enable = NULL)
+    {
         if (!is_null($enable)) {
             $this->sandbox = $enable === TRUE;
         }
@@ -58,7 +65,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
     /**
      * Get Access Token for API use
      */
-    public function get_access_token() {
+    public function get_access_token()
+    {
         if (isset ($this->ll_access_token) && !is_null($this->ll_access_token)) {
             return $this->ll_access_token;
         }
@@ -85,7 +93,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param int $id
      * @return array(json)
      */
-    public function get_payment($id) {
+    public function get_payment($id)
+    {
         $access_token = $this->get_access_token();
 
         $uri_prefix = $this->sandbox ? "/sandbox" : "";
@@ -93,7 +102,9 @@ class Dc_MercadoPagoPlus_MercadoPago {
         $payment_info = Dc_MercadoPagoPlus_Client::get($uri_prefix."/collections/notifications/" . $id . "?access_token=" . $access_token);
         return $payment_info;
     }
-    public function get_payment_info($id) {
+
+    public function get_payment_info($id)
+    {
         return $this->get_payment($id);
     }
 
@@ -102,7 +113,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param id
      * @return array(json)
      */
-    public function get_authorized_payment($id) {
+    public function get_authorized_payment($id)
+    {
         $access_token = $this->get_access_token();
 
         $authorized_payment_info = Dc_MercadoPagoPlus_Client::get("/authorized_payments/" . $id . "?access_token=" . $access_token);
@@ -114,7 +126,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param int $id
      * @return array(json)
      */
-    public function refund_payment($id) {
+    public function refund_payment($id)
+    {
         $access_token = $this->get_access_token();
 
         $refund_status = array(
@@ -130,7 +143,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param int $id
      * @return array(json)
      */
-    public function cancel_payment($id) {
+    public function cancel_payment($id)
+    {
         $access_token = $this->get_access_token();
 
         $cancel_status = array(
@@ -146,7 +160,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param int $id
      * @return array(json)
      */
-    public function cancel_preapproval_payment($id) {
+    public function cancel_preapproval_payment($id)
+    {
         $access_token = $this->get_access_token();
 
         $cancel_status = array(
@@ -164,7 +179,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param int $limit
      * @return array(json)
      */
-    public function search_payment($filters, $offset = 0, $limit = 0) {
+    public function search_payment($filters, $offset = 0, $limit = 0)
+    {
         $access_token = $this->get_access_token();
 
         $filters["offset"] = $offset;
@@ -183,7 +199,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param array $preference
      * @return array(json)
      */
-    public function create_preference($preference) {
+    public function create_preference($preference)
+    {
         $access_token = $this->get_access_token();
 
         $preference_result = Dc_MercadoPagoPlus_Client::post("/checkout/preferences?access_token=" . $access_token, $preference);
@@ -196,7 +213,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param array $preference
      * @return array(json)
      */
-    public function update_preference($id, $preference) {
+    public function update_preference($id, $preference)
+    {
         $access_token = $this->get_access_token();
 
         $preference_result = Dc_MercadoPagoPlus_Client::put("/checkout/preferences/{$id}?access_token=" . $access_token, $preference);
@@ -208,7 +226,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param string $id
      * @return array(json)
      */
-    public function get_preference($id) {
+    public function get_preference($id)
+    {
         $access_token = $this->get_access_token();
 
         $preference_result = Dc_MercadoPagoPlus_Client::get("/checkout/preferences/{$id}?access_token=" . $access_token);
@@ -220,7 +239,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param array $preapproval_payment
      * @return array(json)
      */
-    public function create_preapproval_payment($preapproval_payment) {
+    public function create_preapproval_payment($preapproval_payment)
+    {
         $access_token = $this->get_access_token();
 
         $preapproval_payment_result = Dc_MercadoPagoPlus_Client::post("/preapproval?access_token=" . $access_token, $preapproval_payment);
@@ -232,7 +252,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param string $id
      * @return array(json)
      */
-    public function get_preapproval_payment($id) {
+    public function get_preapproval_payment($id)
+    {
         $access_token = $this->get_access_token();
 
         $preapproval_payment_result = Dc_MercadoPagoPlus_Client::get("/preapproval/{$id}?access_token=" . $access_token);
@@ -245,7 +266,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @return array(json)
      */
 
-    public function update_preapproval_payment($id, $preapproval_payment) {
+    public function update_preapproval_payment($id, $preapproval_payment)
+    {
         $access_token = $this->get_access_token();
 
         $preapproval_payment_result = Dc_MercadoPagoPlus_Client::put("/preapproval/" . $id . "?access_token=" . $access_token, $preapproval_payment);
@@ -260,7 +282,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param params
      * @param authenticate = true
      */
-    public function get($uri, $params = null, $authenticate = true) {
+    public function get($uri, $params = null, $authenticate = true)
+    {
         $params = is_array ($params) ? $params : array();
 
         if ($authenticate !== false) {
@@ -284,7 +307,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param data
      * @param params
      */
-    public function post($uri, $data, $params = null) {
+    public function post($uri, $data, $params = null)
+    {
         $params = is_array ($params) ? $params : array();
 
         $access_token = $this->get_access_token();
@@ -305,7 +329,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param data
      * @param params
      */
-    public function put($uri, $data, $params = null) {
+    public function put($uri, $data, $params = null)
+    {
         $params = is_array ($params) ? $params : array();
 
         $access_token = $this->get_access_token();
@@ -326,7 +351,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
      * @param data
      * @param params
      */
-    public function delete($uri, $params = null) {
+    public function delete($uri, $params = null)
+    {
         $params = is_array ($params) ? $params : array();
 
         $access_token = $this->get_access_token();
@@ -343,7 +369,8 @@ class Dc_MercadoPagoPlus_MercadoPago {
 
     /* **************************************************************************************** */
 
-    private function build_query($params) {
+    private function build_query($params)
+    {
         if (function_exists("http_build_query")) {
             return http_build_query($params, "", "&");
         } else {
@@ -356,4 +383,3 @@ class Dc_MercadoPagoPlus_MercadoPago {
     }
 
 }
-
