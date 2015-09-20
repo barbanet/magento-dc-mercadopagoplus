@@ -18,26 +18,31 @@
  * MercadoPago cURL RestClient
  * Original code from https://github.com/mercadopago/sdk-php
  */
-class Dc_MercadoPagoPlus_Client {
+class Dc_MercadoPagoPlus_Client
+{
 
     const API_BASE_URL = "https://api.mercadopago.com";
 
-    private static function get_connect($uri, $method, $content_type) {
+    private static function get_connect($uri, $method, $content_type)
+    {
         if (!extension_loaded ("curl")) {
             throw new Exception("cURL extension not found. You need to enable cURL in your php.ini or another configuration you have.");
         }
 
         $connect = curl_init(self::API_BASE_URL . $uri);
 
-        curl_setopt($connect, CURLOPT_USERAGENT, "MercadoPago PHP SDK v" . Dc_MercadoPagoPlus_MercadoPago::version);
+        curl_setopt($connect, CURLOPT_USERAGENT, "Dc_MercadoPagoPlus " . Mage::getConfig()->getModuleConfig('Dc_MercadoPagoPlus')->version);
         curl_setopt($connect, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($connect, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($connect, CURLOPT_CAINFO, Mage::getBaseDir('lib') . DS . 'Dc' . DS . 'MercadoPagoPlus' . DS . 'cacert.pem');
         curl_setopt($connect, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($connect, CURLOPT_HTTPHEADER, array("Accept: application/json", "Content-Type: " . $content_type));
 
         return $connect;
     }
 
-    private static function set_data(&$connect, $data, $content_type) {
+    private static function set_data(&$connect, $data, $content_type)
+    {
         if ($content_type == "application/json") {
             if (gettype($data) == "string") {
                 json_decode($data, true);
@@ -56,7 +61,8 @@ class Dc_MercadoPagoPlus_Client {
         curl_setopt($connect, CURLOPT_POSTFIELDS, $data);
     }
 
-    private static function exec($method, $uri, $data, $content_type) {
+    private static function exec($method, $uri, $data, $content_type)
+    {
         $connect = self::get_connect($uri, $method, $content_type);
         if ($data) {
             self::set_data($connect, $data, $content_type);
@@ -94,19 +100,24 @@ class Dc_MercadoPagoPlus_Client {
         return $response;
     }
 
-    public static function get($uri, $content_type = "application/json") {
+    public static function get($uri, $content_type = "application/json")
+    {
         return self::exec("GET", $uri, null, $content_type);
     }
 
-    public static function post($uri, $data, $content_type = "application/json") {
+    public static function post($uri, $data, $content_type = "application/json")
+    {
         return self::exec("POST", $uri, $data, $content_type);
     }
 
-    public static function put($uri, $data, $content_type = "application/json") {
+    public static function put($uri, $data, $content_type = "application/json")
+    {
         return self::exec("PUT", $uri, $data, $content_type);
     }
 
-    public static function delete($uri, $content_type = "application/json") {
-        return self::exec("DELETE", $uri, $null, $content_type);
+    public static function delete($uri, $content_type = "application/json")
+    {
+        return self::exec("DELETE", $uri, null, $content_type);
     }
+
 }
